@@ -1,0 +1,7 @@
+<h3>Accept Requests</h3>
+<% @incoming_requests.each do |incoming_request| %>
+  <div class="row">
+      <%= incoming_request.first_name %>
+      <%= link_to 'Accept Friend Request', friend_request_path(id: incoming_request), method: :put%>
+  </div>
+  <% end %>
