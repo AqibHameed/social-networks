@@ -2,8 +2,6 @@ class FriendRequest < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User'
 
-  private
-
   def self.incoming_requests(current_user)
 
        FriendRequest.where(friend: current_user).map{|incoming_request| incoming_request.user}
@@ -16,9 +14,12 @@ class FriendRequest < ApplicationRecord
 
   end
 
-  def self.accept(current_user, friend)
+  def accept
 
-      current_user.friends << friend
+    user.friends << friend
+    friend.friend_ships.create(friend: user)
+    destroy
 
   end
+
 end

@@ -1,0 +1,18 @@
+<nav class="container background">
+  <div>
+    <ul>
+      <li><%= link_to 'Home', authenticated_root_path, class: "text-primary" %></li>
+    </ul>
+    <ul>
+      <li><%= link_to 'Firend Requests', friend_requests_path, class: "text-primary" %></li>
+    </ul>
+    <ul>
+      <li><%= link_to 'Friends', friend_ships_path, class: "text-primary" %></li>
+    </ul>
+    <ul>
+      <li><%= link_to 'Sign Out', destroy_user_session_path,  method: :delete , class: "text-primary" %></li>
+    </ul>
+  </div>
+</nav>
+
+

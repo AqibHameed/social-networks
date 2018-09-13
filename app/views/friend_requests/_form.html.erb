@@ -4,9 +4,9 @@
       <h2><%= pluralize(friend_request.errors.count, "error") %> prohibited this friend_request from being saved:</h2>
 
       <ul>
-      <% friend_request.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% friend_request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>

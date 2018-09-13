@@ -1,0 +1,40 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <%= link_to 'Post', new_post_path %>
+  </div>
+ <% @posts.each do |post| %>
+    <div class="row">
+      <%= post.content %>
+    </div>
+    <div class="row">
+      <%= image_tag url_for(post.avatar), style: 'height:200px;width:400px;'%>
+    </div>
+    <%= link_to 'Comment  ', new_post_comment_path(post), post: post %>
+    <% if post.likes.where(user_id: current_user).count > 0 %>
+      <%= link_to 'UnLike ', post_like_path(post_id: post.id, id: post.likes.where(user_id: current_user.id).first), method: :delete %>
+    <% else %>
+      <%= link_to 'Like ', post_likes_path(post_id: post.id), method: :post %>
+    <% end %>
+    <% if post.likes.count > 0 %>
+           <%= post.likes.count %>
+    <% end %>
+      <%post.comments.each do |comment| %>
+       <div class="row">
+         <%= link_to comment.user.first_name %>
+         <%= comment.content %>
+         <% if comment.likes.where(user_id: current_user).count > 0 %>
+           <%= link_to 'UnLike ', post_like_path(post_id: post.id, comment_id: comment.id, id: comment.likes.where(user_id: current_user.id).first), method: :delete %>
+         <% else %>
+           <%= link_to 'Like ',post_likes_path(post_id: post.id, comment_id: comment.id), method: :post %>
+         <% end %>
+         <%if comment.likes.count > 0 %>
+               <%= comment.likes.count %>
+         <% end %>
+       </div>
+      <% end %>
+
+  <% end %>
+</div>
+
+

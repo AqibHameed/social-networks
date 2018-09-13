@@ -1,7 +1,7 @@
 <h3>Send Requests</h3>
-  <% @send_requests.each do |send_request| %>
+<% @send_requests.each do |send_request| %>
   <div class="row">
-      <%= send_request.first_name %>
-      <%= link_to 'Cancel Friend Request', friend_request_path(id: send_request), method: :delete%>
+    <%= send_request.first_name %>
+    <%= link_to 'Cancel Friend Request', friend_request_path(id: send_request), method: :delete%>
   </div>
-  <% end %>
+<% end %>

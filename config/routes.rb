@@ -1,16 +1,23 @@
 Rails.application.routes.draw do
 
   devise_scope :user do
+
     authenticated :user do
-      root 'homes#index', as: :authenticated_root
+
+      root 'posts#index', as: :authenticated_root
+
     end
 
     unauthenticated do
+
       root 'users/sessions#new', as: :unauthenticated_root
+
     end
+
   end
 
   devise_for :users, controllers: {
+
       registrations: 'users/registrations',
       sessions: 'users/sessions',
       passwords: 'users/passwords'
@@ -19,6 +26,10 @@ Rails.application.routes.draw do
 
   resources :friend_requests
   resources :friend_ships
+  resources :posts do
+    resources :comments
+    resources  :likes
+  end
   get 'homes/index'
 
 end
