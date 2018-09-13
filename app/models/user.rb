@@ -7,9 +7,13 @@ class User < ApplicationRecord
 
   has_many :friend_requests, dependent: :destroy
 
-  has_many :friend_ships
+  has_many :friend_ships, dependent: :destroy
   has_many :friends, through: :friend_ships
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
-  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+
+  def remove_friend(friend)
+    current_user.friends.destroy(friend)
+    friendship = friend.friendships.find_by(friend: user)
+    friendship.destroy if friendship
+  end
 
 end

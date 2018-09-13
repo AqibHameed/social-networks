@@ -1,5 +1,5 @@
 class FriendRequestsController < ApplicationController
-  before_action :set_friend_request, only: [:show, :edit, :destroy]
+  #before_action :set_friend_request, only: [:show, :edit, :destroy]
 
   # GET /friend_requests
   # GET /friend_requests.json
@@ -45,10 +45,10 @@ class FriendRequestsController < ApplicationController
   # PATCH/PUT /friend_requests/1
   # PATCH/PUT /friend_requests/1.json
   def update
-
     @friend_request = FriendRequest.where(user_id: params[:id], friend_id: current_user).first
-    FriendRequest.accept(current_user, @friend_request.user)
-    @friend_request.destroy
+    @friend_request.accept
+    # FriendRequest.accept(current_user, @friend_request.user)
+    # @friend_request.destroy
 
     respond_to do |format|
       format.html { redirect_to friend_requests_url, notice: 'Friend request was successfully updated.' }

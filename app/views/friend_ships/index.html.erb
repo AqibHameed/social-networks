@@ -9,12 +9,5 @@
     <% end %>
     </ul>
 
-  <h2>Friended by Users</h2>
-  <ul>
-    <% current_user.inverse_friends.each do |user| %>
-      <li><%=h user.first_name %></li>
-    <% end %>
-  </ul>
-
     <%= link_to 'Back', homes_index_path %>
 </div>

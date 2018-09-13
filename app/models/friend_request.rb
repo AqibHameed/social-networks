@@ -2,7 +2,7 @@ class FriendRequest < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User'
 
-  private
+
 
   def self.incoming_requests(current_user)
 
@@ -16,9 +16,9 @@ class FriendRequest < ApplicationRecord
 
   end
 
-  def self.accept(current_user, friend)
-
-      current_user.friends << friend
-
+  def accept
+    user.friends << friend
+    friend.friend_ships.create(friend: user)
+    destroy
   end
 end
