@@ -12,7 +12,6 @@ class FriendShipsController < ApplicationController
     current_user.remove_friend(current_user, @friend)
     respond_to do |format|
       format.html { redirect_to friend_ships_path, notice: 'successfully Unfriend.' }
-      format.json { head :no_content }
     end
 
   end

@@ -29,8 +29,8 @@ class FriendRequestsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to friend_requests_url, notice: 'Friend request was successfully Accepted.' }
-      format.json { head :no_content }
     end
+
   end
 
   def destroy
@@ -38,7 +38,6 @@ class FriendRequestsController < ApplicationController
     @friend_request.destroy
     respond_to do |format|
       format.html { redirect_to friend_requests_url, notice: 'Friend request was successfully deleted.' }
-      format.json { head :no_content }
     end
 
   end
