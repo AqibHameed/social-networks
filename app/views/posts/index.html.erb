@@ -11,8 +11,8 @@
       <%= image_tag url_for(post.avatar), style: 'height:200px;width:400px;'%>
     </div>
     <%= link_to 'Comment  ', new_post_comment_path(post), post: post %>
-    <% if post.likes.where(user_id: current_user).count > 0 %>
-      <%= link_to 'UnLike ', post_like_path(post_id: post.id, id: post.likes.where(user_id: current_user.id).first), method: :delete %>
+    <% if current_user_post_like(post, current_user).count > 0 %>
+      <%= link_to 'UnLike ', post_like_path(post_id: post.id, id: current_user_post_like(post, current_user).first), method: :delete %>
     <% else %>
       <%= link_to 'Like ', post_likes_path(post_id: post.id), method: :post %>
     <% end %>
@@ -21,10 +21,10 @@
     <% end %>
       <%post.comments.each do |comment| %>
        <div class="row">
-         <%= link_to comment.user.first_name %>
+         <%= link_to comment.user_first_name %>
          <%= comment.content %>
-         <% if comment.likes.where(user_id: current_user).count > 0 %>
-           <%= link_to 'UnLike ', post_like_path(post_id: post.id, comment_id: comment.id, id: comment.likes.where(user_id: current_user.id).first), method: :delete %>
+         <% if current_user_comment_like(comment, current_user).count > 0 %>
+           <%= link_to 'UnLike ', post_like_path(post_id: post.id, comment_id: comment.id, id: current_user_comment_like(comment, current_user).first), method: :delete %>
          <% else %>
            <%= link_to 'Like ',post_likes_path(post_id: post.id, comment_id: comment.id), method: :post %>
          <% end %>
