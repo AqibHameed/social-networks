@@ -42,6 +42,8 @@ gem 'jquery-rails'
 
 gem "rolify"
 
+gem 'aws-sdk', '~> 2.3'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
