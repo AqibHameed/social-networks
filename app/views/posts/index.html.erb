@@ -8,7 +8,7 @@
       <%= post.content %>
     </div>
     <div class="row">
-      <%= image_tag url_for(post.avatar), style: 'height:200px;width:400px;'%>
+      <%= image_tag post.avatar.url, style: 'height:200px;width:400px;'%>
     </div>
     <%  if can? :update, post %>
       <%= link_to 'Comment  ', new_post_comment_path(post), post: post %>
